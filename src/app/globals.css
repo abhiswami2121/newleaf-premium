@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-serif: var(--font-libre-baskerville), Georgia, serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  --color-nl-50: #f7f3ee;
+  --color-nl-100: #ede4d8;
+  --color-nl-200: #d4c9b8;
+  --color-nl-300: #b8a990;
+  --color-nl-400: #9c9184;
+  --color-nl-500: #7d7060;
+  --color-nl-600: #5a4f42;
+  --color-nl-700: #3d352b;
+  --color-nl-800: #26211a;
+  --color-nl-900: #141210;
+
+  --color-gold-50: #fdf8ed;
+  --color-gold-100: #f9ecce;
+  --color-gold-200: #f2d999;
+  --color-gold-300: #e8c26a;
+  --color-gold-400: #d9a84a;
+  --color-gold-500: #c49b3c;
+  --color-gold-600: #a87d30;
+  --color-gold-700: #886128;
+  --color-gold-800: #6a4c21;
+  --color-gold-900: #4d371a;
+
+  --color-amber-50: #fef7ed;
+  --color-amber-100: #fdebd4;
+  --color-amber-200: #fad4a6;
+  --color-amber-300: #f6b870;
+  --color-amber-400: #f1974a;
+  --color-amber-500: #d4762c;
+  --color-amber-600: #b35d21;
+  --color-amber-700: #8f461b;
+  --color-amber-800: #6d3416;
+  --color-amber-900: #512712;
+}
+
+@layer base {
+  :root {
+    --bg-primary: #141210;
+    --bg-secondary: #1a1814;
+    --bg-card: rgba(38, 33, 26, 0.6);
+    --bg-card-hover: rgba(38, 33, 26, 0.85);
+    --bg-elevated: rgba(20, 18, 16, 0.95);
+    --border-subtle: rgba(196, 155, 60, 0.1);
+    --border-default: rgba(196, 155, 60, 0.18);
+    --border-hover: rgba(196, 155, 60, 0.35);
+    --text-primary: #ede4d8;
+    --text-secondary: #9c9184;
+    --text-muted: #7d7060;
+    --accent-gold: #c49b3c;
+    --accent-amber: #d4762c;
+    --accent-green: #3a9b5e;
+    --accent-red: #b8452b;
+    --glow-gold: 0 0 30px rgba(196, 155, 60, 0.12);
+    --glow-amber: 0 0 30px rgba(212, 118, 44, 0.1);
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 20px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: rgba(196, 155, 60, 0.25);
+    color: #ede4d8;
+  }
+
+  * {
+    border-color: var(--border-default);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility text-gradient-gold {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(135deg, #c49b3c, #e8c26a);
+}
+
+@utility text-gradient-amber {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(135deg, #d4762c, #f6b870);
+}
+
+@utility glass {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+}
+
+@utility glass-hover {
+  &:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-hover);
+  }
+}
+
+@utility glow-gold {
+  box-shadow: var(--glow-gold);
+}
+
+@utility glow-amber {
+  box-shadow: var(--glow-amber);
+}
+
+@utility gold-border {
+  border: 1px solid rgba(196, 155, 60, 0.25);
+}
+
+@utility gold-border-b {
+  border-bottom: 1px solid rgba(196, 155, 60, 0.2);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer-gold {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer-gold {
+  background: linear-gradient(90deg, var(--accent-gold), var(--color-gold-200), var(--accent-gold));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-gold 4s linear infinite;
+}
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
